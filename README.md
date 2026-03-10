@@ -55,7 +55,27 @@ In the `shoebody-bop-summoner` directory, you can run:
 - `npm start` - Runs the app in development mode
 - `npm test` - Launches the test runner
 - `npm run build` - Builds the app for production to the `build` folder
+- `npm run deploy` - Deploys the app to GitHub Pages
 - `npm run eject` - Ejects from Create React App (one-way operation)
+
+## Deployment
+
+This app is configured to deploy to GitHub Pages. To deploy:
+
+1. Navigate to the shoebody-bop-summoner directory:
+```bash
+cd shoebody-bop-summoner
+```
+
+2. Run the deploy command:
+```bash
+npm run deploy
+```
+
+This will build the app and push it to the `gh-pages` branch. Your app will be available at:
+**https://kjayuson.github.io/shoebodybop**
+
+The deployment happens automatically - the `predeploy` script builds the app, and the `deploy` script publishes it to GitHub Pages.
 
 ## Project Structure
 

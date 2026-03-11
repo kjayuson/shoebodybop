@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/shoebodybop/static/css/main.e6c13ad2.css",
-    "main.js": "/shoebodybop/static/js/main.3a15c974.js",
+    "main.js": "/shoebodybop/static/js/main.c36f21a9.js",
     "static/js/453.dbe62992.chunk.js": "/shoebodybop/static/js/453.dbe62992.chunk.js",
+    "static/media/shoebodybop.mp4": "/shoebodybop/static/media/shoebodybop.0a20a2b9c0fb7019ecfe.mp4",
     "index.html": "/shoebodybop/index.html",
     "main.e6c13ad2.css.map": "/shoebodybop/static/css/main.e6c13ad2.css.map",
-    "main.3a15c974.js.map": "/shoebodybop/static/js/main.3a15c974.js.map",
+    "main.c36f21a9.js.map": "/shoebodybop/static/js/main.c36f21a9.js.map",
     "453.dbe62992.chunk.js.map": "/shoebodybop/static/js/453.dbe62992.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.3a15c974.js"
+    "static/js/main.c36f21a9.js"
   ]
 }

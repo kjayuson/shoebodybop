@@ -1,14 +1,13 @@
-import { useRef, useState } from "react";
-import YouTube from "react-youtube";
+import { useEffect, useRef, useState } from "react";
+import shoebodyBopVideo from "./assets/shoebodybop.mp4";
 
 function App() {
-  const [names, setNames] = useState([
-    "Robert",
-    "John",
-    "Jamie",
-    "Ken",
-    "Steven",
-  ]);
+  const [names, setNames] = useState(() => {
+    const savedNames = localStorage.getItem("summonerNames");
+    return savedNames
+      ? JSON.parse(savedNames)
+      : ["Robert", "John", "Jamie", "Ken", "Steven"];
+  });
   const [newName, setNewName] = useState("");
   const [selectedName, setSelectedName] = useState("");
   const [isSummoning, setIsSummoning] = useState(false);
@@ -16,6 +15,18 @@ function App() {
 
   const videoRef = useRef(null);
 
+  // Load names from localStorage on mount
+  useEffect(() => {
+    const savedNames = localStorage.getItem("summonerNames");
+    if (savedNames) {
+      setNames(JSON.parse(savedNames));
+    }
+  }, []);
+
+  // Save names to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("summonerNames", JSON.stringify(names));
+  }, [names]);
   const addName = () => {
     if (newName.trim()) {
       setNames([...names, newName]);
@@ -33,13 +44,11 @@ function App() {
     setShowVideo(true);
   };
 
-  const handleVideoReady = (event) => {
-    videoRef.current = event.target;
-    videoRef.current.seekTo(64); // Adjust to the meme part
-    videoRef.current.playVideo();
-  };
-
   const handleVideoPlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+
     setTimeout(() => {
       const random = names
         .map((name) => ({ name, sort: Math.random() }))
@@ -47,6 +56,7 @@ function App() {
       setSelectedName(random);
       setIsSummoning(false);
       setShowVideo(false);
+      setNames(names.filter((name) => name !== random));
     }, 8000);
   };
 
@@ -159,24 +169,19 @@ function App() {
           ))}
         </div>
       </div>
-
       <div style={{ marginTop: "3rem" }}>
         {showVideo && (
-          <YouTube
-            videoId="mRNtw_Tc1Jc"
-            opts={{
-              height: "540",
-              width: "960",
-              playerVars: {
-                autoplay: 1,
-                controls: 0,
-                modestbranding: 1,
-                rel: 0,
-              },
-            }}
-            onReady={handleVideoReady}
-            onPlay={handleVideoPlay}
-          />
+          <video
+            ref={videoRef}
+            width="960"
+            height="540"
+            onCanPlay={handleVideoPlay}
+            style={{ borderRadius: "8px" }}
+            autoplay
+          >
+            <source src={shoebodyBopVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         )}
 
         {selectedName && !isSummoning && (
